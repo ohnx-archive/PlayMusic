@@ -13,12 +13,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows.Controls.Primitives;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace PlayMusic
 {
@@ -31,8 +33,10 @@ namespace PlayMusic
         public List<string> files;
         private Random rand;
         private bool isPaused = false;
-        //Change here if you want to use this app yourself
+        private bool isMin = false;
+        private bool shuffle = true;
         private string searchdir;
+        KeyboardListener KListener = new KeyboardListener();
 
         public MainWindow()
         {
@@ -46,6 +50,11 @@ namespace PlayMusic
             {
                 files.Add(System.IO.Path.GetFileNameWithoutExtension(s));
             }
+            if (files.Count == 0)
+            {
+                MessageBox.Show("You have no music to play!\nPlease put some music in " + searchdir + " and then run this application.\nPlease note, the file must be in .mp3 form", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+            }
             myListBox.ItemsSource = files;
             //add media handler
             mediaPlayer.MediaEnded += onSongFinished;
@@ -53,19 +62,48 @@ namespace PlayMusic
             advanceSong();
             //start timer
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Interval = TimeSpan.FromSeconds(0.5);
             timer.Tick += timer_Tick;
             timer.Start();
+            //Register hotkey
+            KListener.KeyDown += new RawKeyEventHandler(KListener_KeyDown);
         }
-
+        private void btnShuffle_Click(object sender, RoutedEventArgs e)
+        {
+            if (shuffle)
+            {
+                btnShuffle.Foreground = new SolidColorBrush(Color.FromRgb(51, 51, 51));
+                shuffle = false;
+            }
+            else
+            {
+                btnShuffle.Foreground = new SolidColorBrush(Color.FromRgb(68, 187, 255));
+                shuffle = true;
+            }
+        }
         private void onSongFinished(object sender, System.EventArgs e)
         {
             advanceSong();
         }
         private void advanceSong()
         {
-            string song = files[rand.Next(0, files.Count)];
-            myListBox.SelectedIndex = files.FindIndex(x => x.Equals(song));
+            if (shuffle)
+            {
+                string song = files[rand.Next(0, files.Count)];
+                myListBox.SelectedIndex = files.FindIndex(x => x.Equals(song));
+            }
+            else
+            {
+                if (files.Count > (myListBox.SelectedIndex + 1))
+                {
+                    myListBox.SelectedIndex = myListBox.SelectedIndex + 1;
+                }
+                else
+                {
+                    myListBox.SelectedIndex = 0;
+                }
+            }
+
         }
         private void playSong(string song)
         {
@@ -81,6 +119,27 @@ namespace PlayMusic
                 togglePlayPause();
             }
         }
+        private void btnTgl_Click(object sender, RoutedEventArgs e)
+        {
+            if (isMin)
+            {
+                toggleSong.Content = "";
+                MainWin.MaxHeight = int.MaxValue; //Because infinity doesn't work.
+                MainWin.Height = 730;
+                MainWin.MinHeight = 730;
+                sBox.Visibility = Visibility.Visible;
+                isMin = false;
+            }
+            else
+            {
+                sBox.Visibility = Visibility.Collapsed;
+                toggleSong.Content = "";
+                MainWin.MinHeight = 240;
+                MainWin.Height = 240;
+                MainWin.MaxHeight = 240;
+                isMin = true;
+            }
+        }
         private void btnPlayPause_Click(object sender, RoutedEventArgs e)
         {
             togglePlayPause();
@@ -91,13 +150,13 @@ namespace PlayMusic
             {
                 mediaPlayer.Play();
                 isPaused = false;
-                btnPlayPause.Content = "&#xF04C;";
+                btnPlayPause.Content = ""; //Pause icon
             }
             else
             {
                 mediaPlayer.Pause();
                 isPaused = true;
-                btnPlayPause.Content = "&#xF04B;";
+                btnPlayPause.Content = ""; //Play icon
             }
         }
         void timer_Tick(object sender, EventArgs e)
@@ -123,6 +182,27 @@ namespace PlayMusic
         private void myListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             playSong(files[myListBox.SelectedIndex]);
+        }
+
+        // I wonder if antivirus programs will the catch the fact that I have a system-wide keylogger bundled in my app.
+        // I hope not...
+        private void KListener_KeyDown(object sender, RawKeyEventArgs args)
+        {
+            if(args.Key == Key.MediaNextTrack)
+            {
+                advanceSong();
+            }
+            else if (args.Key == Key.MediaPlayPause)
+            {
+                togglePlayPause();
+            }
+            // It's not like I'm sending myself the info!
+            // secretlySendEmailAboutWhatKeyAUserPressed(args.Key);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            KListener.Dispose();
         }
     }
 }

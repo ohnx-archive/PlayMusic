@@ -11,3 +11,5 @@ d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.Pro
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.csproj.GenerateResource.Cache
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.exe
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.pdb
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\test.baml
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\test.g.cs

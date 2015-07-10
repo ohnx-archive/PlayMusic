@@ -1,49 +1,65 @@
 ﻿<Window x:Name="MainWin" x:Class="PlayMusic.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Play MuSiK!" Height="730" Width="550" MinWidth="550" MinHeight="730">
+        Title="Play MuSiK!" Height="730" Width="550" MinWidth="320" MinHeight="730" Icon="pack://application:,,,/Resources/photo.ico" Background="LightGray" Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="betterHover" TargetType="{x:Type Label}">
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#44bbff" />
-                    <!--<Setter Property="Background" Value="Gray" />-->
-                </Trigger>
+                <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+                                <ColorAnimation To="#44bbff" Duration="0:0:0:0"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+                                <ColorAnimation To="#333333" Duration="0:0:0:0"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="230"/>
-            <RowDefinition Height="469*"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="551*"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="5,5,5,0" Grid.Row="0">
-            <Grid Height="143">
+            <Grid Height="130">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="127"/>
                     <ColumnDefinition Width="395*"/>
                 </Grid.ColumnDefinitions>
                 <WrapPanel HorizontalAlignment="Right" Grid.Column="0" Width="127">
-                    <Label Style="{StaticResource betterHover}" Content="&#xF001;" FontFamily="pack://application:,,,/Resources/#FontAwesome" FontSize="120" Width="127" />
+                    <Label Content="&#xF001;" FontFamily="pack://application:,,,/Resources/#FontAwesome" FontSize="120" Width="127" Foreground="Gray" />
                 </WrapPanel>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="58*"/>
+                        <RowDefinition Height="58"/>
                         <RowDefinition Height="40*"/>
-                        <RowDefinition Height="45*"/>
                     </Grid.RowDefinitions>
-                    <Label x:Name="SongName" Content="Song Title" FontSize="36" Grid.Row="0" />
-                    <Label x:Name="ArtistName" Content="Artist Name" FontSize="20" Grid.Row="1" />
-                    <Label x:Name="lblStatus" Content="00:00 / 00:00" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Margin="5" Grid.Row="2" />
+                    <Label x:Name="SongName" Content="Song Title" FontSize="36" Grid.Row="0" Foreground="#333333" />
+                    <Label x:Name="ArtistName" Content="Artist Name" FontSize="20" Grid.Row="1" Foreground="#333333" />
+                    <Label x:Name="lblStatus" Content="00:00 / 00:00" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Margin="5" Grid.Row="2" Foreground="#333333" />
                 </Grid>
             </Grid>
+
             <WrapPanel HorizontalAlignment="Center">
-                <Label x:Name="btnPlayPause" Style="{StaticResource betterHover}" MouseLeftButtonUp="btnPlayPause_Click" Height="70" Width="70" FontSize="60" BorderThickness="0" BorderBrush="Black" Content="&#xF04C;" FontFamily="pack://application:,,,/Resources/#FontAwesome" Cursor="Hand" />
-                <Label x:Name="btnNext" Style="{StaticResource betterHover}" MouseLeftButtonUp="btnNext_Click" Height="70" Width="70" BorderBrush="Black" BorderThickness="0" Content="&#xF050;" Margin="5,0,0,0" FontSize="60" FontFamily="pack://application:,,,/Resources/#FontAwesome" Cursor="Hand" />
+                <Label x:Name="btnPlayPause" Style="{StaticResource betterHover}" MouseLeftButtonUp="btnPlayPause_Click" Height="70" Width="70" FontSize="60" BorderThickness="0" BorderBrush="Black" Content="&#xF04C;" FontFamily="pack://application:,,,/Resources/#FontAwesome" Foreground="#333333" />
+                <Label x:Name="btnNext" Style="{StaticResource betterHover}" MouseLeftButtonUp="btnNext_Click" Height="70" Width="70" BorderBrush="Black" BorderThickness="0" Content="&#xF050;" Margin="5,0,0,0" FontSize="60" FontFamily="pack://application:,,,/Resources/#FontAwesome" Foreground="#333333" />
+                <Label x:Name="btnShuffle" MouseLeftButtonUp="btnShuffle_Click" Height="70" Width="70" BorderBrush="Black" BorderThickness="0" Content="&#xf074;" Margin="5,0,0,0" FontSize="60" FontFamily="pack://application:,,,/Resources/#FontAwesome" Foreground="#44bbff" />
+                <Label x:Name="toggleSong" Style="{StaticResource betterHover}" MouseLeftButtonUp="btnTgl_Click" Content="&#xF0AB;" Height="70" Width="70" FontSize="60" BorderThickness="0" BorderBrush="Black" FontFamily="pack://application:,,,/Resources/#FontAwesome" Foreground="#333333" />
             </WrapPanel>
         </StackPanel>
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
-            <ListBox x:Name="myListBox" SelectionChanged="myListBox_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <Grid x:Name="sBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <ListBox x:Name="myListBox" SelectionChanged="myListBox_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="LightGray" Foreground="#000" />
         </Grid>
     </Grid>
 </Window>
