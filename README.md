@@ -34,5 +34,4 @@ Larger mode:
 ![Larger mode](http://i.imgur.com/QirpXuR.png)
 
 ## download
-You can compile the source, or you can download the precompiled binary.
-<insert download>
+You can compile the source, or you can download the precompiled binary [here](https://github.com/ohnx/PlayMusic/releases/download/v1.0/PlayMusic.exe).
