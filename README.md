@@ -16,11 +16,21 @@ In the larger mode, a song list is shown and you can also select a song that you
 ### media keys
 You can use the media keys to play/pause or skip the current song. (Only Play/pause and skip work, no skipping backwards or stopping or volume).
 
+Please note that this functionality does technically mean that **there is a keylogger built into this app to detect when a media key is pressed**, and soley for that purpose. Nothing is done in this app if the key pressed isn't a media key. Luckily, it's open source, so if you don't trust me (which I sure hope you do!), you can examine the source code.
+
 ### naming convention
 When getting the song name and artist name, it is assumed that all files are in a (pretty standard) format `artist name` - `song name`
 
+### shuffle
+Shuffle is the difference between going to a random song and going to the next song on the list (alphabetical by filename)
+
 ## screenshots
+Mini mode:
+
 ![Mini mode](http://i.imgur.com/n6tYa0f.png)
+
+Larger mode:
+
 ![Larger mode](http://i.imgur.com/QirpXuR.png)
 
 ## download
