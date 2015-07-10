@@ -1,0 +1,13 @@
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\bin\Debug\PlayMusic.exe.config
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\bin\Debug\PlayMusic.exe
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\bin\Debug\PlayMusic.pdb
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.csprojResolveAssemblyReference.cache
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\MainWindow.baml
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\MainWindow.g.cs
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\App.g.cs
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic_MarkupCompile.cache
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.g.resources
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.Properties.Resources.resources
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.csproj.GenerateResource.Cache
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.exe
+d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.pdb
