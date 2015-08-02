@@ -16,7 +16,7 @@ In the larger mode, a song list is shown and you can also select a song that you
 ### media keys
 You can use the media keys to play/pause or skip the current song. (Only Play/pause and skip work, no skipping backwards or stopping or volume).
 
-Please note that this functionality does technically mean that there is a keylogger built into this app to detect when a media key is pressed, but solely for that purpose. Nothing is done in this app if the key pressed isn't a media key. Luckily, it's open source, so if you don't trust me (which I sure hope you do!), you can examine the source code.
+Please note that this functionality does technically mean that there is a keylogger built into this app to detect when a media key is pressed, but solely for that purpose. Nothing is done in this app if the key pressed isn't a media key. Luckily, it's open source, so if you don't trust me (which I sure hope you do!), you can examine the source code. Also, the touch keyboad has a '.com' key on windows. Don't press it or else the app will crash ;)
 
 ### naming convention
 When getting the song name and artist name, it is assumed that all files are in a (pretty standard) format `artist name` - `song name`
