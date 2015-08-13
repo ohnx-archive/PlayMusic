@@ -13,3 +13,16 @@ d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.exe
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.pdb
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\test.baml
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\test.g.cs
+C:\Users\Mason\Documents\GitHub\PlayMusic\bin\Debug\PlayMusic.exe.config
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic.exe
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic.pdb
+C:\Users\Mason\Documents\GitHub\PlayMusic\bin\Debug\PlayMusic.exe
+C:\Users\Mason\Documents\GitHub\PlayMusic\bin\Debug\PlayMusic.pdb
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic.csprojResolveAssemblyReference.cache
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\MainWindow.baml
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\MainWindow.g.cs
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\App.g.cs
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic_MarkupCompile.cache
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic.g.resources
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic.Properties.Resources.resources
+C:\Users\Mason\Documents\GitHub\PlayMusic\obj\Debug\PlayMusic.csproj.GenerateResource.Cache
