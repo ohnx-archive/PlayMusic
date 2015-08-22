@@ -24,13 +24,20 @@ using System.Diagnostics;
 
 namespace PlayMusic
 {
+    public class Song
+    {
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Album { get; set; }
+        public string Filename { get; set; }
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private MediaPlayer mediaPlayer = new MediaPlayer();
-        public List<string> files;
+        public List<Song> songs;
         private Random rand;
         private bool isPaused = false;
         private bool isMin = false;
@@ -45,17 +52,13 @@ namespace PlayMusic
             searchdir = System.Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
             //load songs and set in listbox
             rand = new Random();
-            files = new List<string>();
-            foreach (string s in Directory.GetFiles(searchdir, "*.mp3"))
-            {
-                files.Add(System.IO.Path.GetFileNameWithoutExtension(s));
-            }
-            if (files.Count == 0)
+            songList.IsReadOnly = true;
+            genCol();
+            if (songs.Count == 0)
             {
                 MessageBox.Show("You have no music to play!\nPlease put some music in " + searchdir + " and then run this application.\nPlease note, the file must be in .mp3 form", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
-            myListBox.ItemsSource = files;
             //add media handler
             mediaPlayer.MediaEnded += onSongFinished;
             //advance song
@@ -67,6 +70,20 @@ namespace PlayMusic
             timer.Start();
             //Register hotkey
             KListener.KeyDown += new RawKeyEventHandler(KListener_KeyDown);
+        }
+        private void genCol()
+        {
+            songs = new List<Song>();
+            TagLib.File temp;
+            foreach (string s in Directory.GetFiles(searchdir, "*.mp3"))
+            {
+                /*string[] info = System.IO.Path.GetFileNameWithoutExtension(s).Split(new string[] { " - " }, StringSplitOptions.None);
+                info[1].Remove(0, 1);*/
+                temp = TagLib.File.Create(s);
+                Song song = new Song { Artist = string.Join(",", temp.Tag.Performers), Title = temp.Tag.Title, Album = temp.Tag.Album, Filename = System.IO.Path.GetFileName(s) };
+                songs.Add(song);
+            }
+            songList.ItemsSource = songs;
         }
         private void btnShuffle_Click(object sender, RoutedEventArgs e)
         {
@@ -89,30 +106,29 @@ namespace PlayMusic
         {
             if (shuffle)
             {
-                string song = files[rand.Next(0, files.Count)];
-                myListBox.SelectedIndex = files.FindIndex(x => x.Equals(song));
+                Song song = songs[rand.Next(0, songs.Count)];
+                songList.SelectedItem = song;
             }
             else
             {
-                if (files.Count > (myListBox.SelectedIndex + 1))
+                if (songs.Count > (songList.SelectedIndex + 1))
                 {
-                    myListBox.SelectedIndex = myListBox.SelectedIndex + 1;
+                    songList.SelectedIndex = songList.SelectedIndex + 1;
                 }
                 else
                 {
-                    myListBox.SelectedIndex = 0;
+                    songList.SelectedIndex = 0;
                 }
             }
 
         }
-        private void playSong(string song)
+        private void playSong(Song song)
         {
-            mediaPlayer.Open(new System.Uri(searchdir+"\\"+song+".mp3"));
-            string[] info = song.Split(new string[] { " - " }, StringSplitOptions.None);
-            ArtistName.Content = info[0];
-            info[1].Remove(0, 1);
-            SongName.Content = info[1];
-            MainWin.Title = song;
+            Console.WriteLine(searchdir + "\\" + song.Filename);
+            mediaPlayer.Open(new System.Uri(searchdir + "\\" + song.Filename));
+            ArtistName.Content = song.Artist;
+            SongName.Content = song.Title;
+            MainWin.Title = song.Title;
             mediaPlayer.Play();
             if (isPaused)
             {
@@ -181,7 +197,15 @@ namespace PlayMusic
 
         private void myListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            playSong(files[myListBox.SelectedIndex]);
+            try
+            {
+                playSong((Song)songList.SelectedItem);
+            }
+            catch (Exception erreur)
+            {
+                // invalid selection
+            }
+            
         }
 
         // I wonder if antivirus programs will the catch the fact that I have a system-wide keylogger bundled in my app.
