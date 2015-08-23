@@ -6,7 +6,7 @@ The app automatically scans your music directory for music (in .mp3 form only) a
 
 The goal for this app is to be a simple music player. You run it, and forget about it (that is, unless you don't like the music being played). Sometimes when I'm coding, I like a bit of music playing, and this is the perfect app for that.
 
-Within the UI, you can see the current song name and artist, see time elapsed/total time, skip the current song, pause/play the current song and enable/disable shuffle mode.
+Within the UI, you can see the current song name, album and contributing artists, see time elapsed/total time, skip the current song, pause/play the current song and enable/disable shuffle mode.
 
 ### mini vs large
 in the UI, there is an arrow. This allows you to toggle between a "mini" and "larger" mode.
@@ -16,10 +16,10 @@ In the larger mode, a song list is shown and you can also select a song that you
 ### media keys
 You can use the media keys to play/pause or skip the current song. (Only Play/pause and skip work, no skipping backwards or stopping or volume).
 
-Please note that this functionality does technically mean that there is a keylogger built into this app to detect when a media key is pressed, but solely for that purpose. Nothing is done in this app if the key pressed isn't a media key. Luckily, it's open source, so if you don't trust me (which I sure hope you do!), you can examine the source code. Also, the touch keyboad has a '.com' key on windows. Don't press it or else the app will crash ;)
+Please note that this functionality does technically mean that there is a keylogger built into this app to detect when a media key is pressed, but solely for that purpose. Nothing is done in this app if the key pressed isn't a media key. Luckily, it's open source, so if you don't trust me (which I sure hope you do!), you can examine the source code.
 
-### naming convention
-When getting the song name and artist name, it is assumed that all files are in a (pretty standard) format `artist name` - `song name`
+### id3 tags
+PlayMusic uses id3 tags to determine the artists, song title and album titles. If you want to edit these tags, check out [mp3tag](http://www.mp3tag.de/en/). In the future, I may add the ability to edit tags in the application.
 
 ### shuffle
 Shuffle is the difference between going to a random song and going to the next song on the list (alphabetical by filename)
@@ -34,4 +34,4 @@ Larger mode:
 ![Larger mode](http://i.imgur.com/QirpXuR.png)
 
 ## download
-You can compile the source, or you can download the precompiled binary [here](https://github.com/ohnx/PlayMusic/releases/download/v1.0/PlayMusic.exe).
+You can compile the source, or you can download the precompiled binary extractor [here](https://github.com/ohnx/PlayMusic/releases/download/v2.0a/PlayMusic-Install.exe).
