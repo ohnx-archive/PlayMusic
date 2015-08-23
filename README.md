@@ -34,4 +34,4 @@ Larger mode:
 ![Larger mode](http://i.imgur.com/QirpXuR.png)
 
 ## download
-You can compile the source, or you can download the precompiled binary extractor [here](https://github.com/ohnx/PlayMusic/releases/download/v2.0a/PlayMusic-Install.exe).
+You can compile the source, or you can download the precompiled binary extractor [here](https://github.com/ohnx/PlayMusic/releases/download/v2.0/PlayMusic-Install.exe). The current version is v2.0. Other releases can be found on the [releases page](https://github.com/ohnx/PlayMusic/releases).
