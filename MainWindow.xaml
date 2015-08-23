@@ -59,10 +59,10 @@
             </WrapPanel>
         </StackPanel>
         <Grid x:Name="sBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
-            <DataGrid SelectionMode="Single" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="songList" SelectionChanged="myListBox_SelectionChanged" Background="LightGray" Foreground="#000" >
+            <DataGrid SelectionMode="Single" HorizontalAlignment="Stretch" ColumnWidth="*" VerticalAlignment="Stretch" x:Name="songList" SelectionChanged="myListBox_SelectionChanged" Background="LightGray" Foreground="#000" >
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontSize" Value="16"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
             </DataGrid>

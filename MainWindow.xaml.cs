@@ -29,7 +29,15 @@ namespace PlayMusic
         public string Title { get; set; }
         public string Artist { get; set; }
         public string Album { get; set; }
-        public string Filename { get; set; }
+        private string Filename { get; set; }
+        public string getFilename()
+        {
+            return Filename;
+        }
+        public void setFilename(string fname)
+        {
+            Filename = fname;
+        }
     }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -77,10 +85,9 @@ namespace PlayMusic
             TagLib.File temp;
             foreach (string s in Directory.GetFiles(searchdir, "*.mp3"))
             {
-                /*string[] info = System.IO.Path.GetFileNameWithoutExtension(s).Split(new string[] { " - " }, StringSplitOptions.None);
-                info[1].Remove(0, 1);*/
                 temp = TagLib.File.Create(s);
-                Song song = new Song { Artist = string.Join(",", temp.Tag.Performers), Title = temp.Tag.Title, Album = temp.Tag.Album, Filename = System.IO.Path.GetFileName(s) };
+                Song song = new Song { Artist = string.Join(",", temp.Tag.Performers), Title = temp.Tag.Title, Album = temp.Tag.Album };
+                song.setFilename(System.IO.Path.GetFileName(s));
                 songs.Add(song);
             }
             songList.ItemsSource = songs;
@@ -124,11 +131,11 @@ namespace PlayMusic
         }
         private void playSong(Song song)
         {
-            Console.WriteLine(searchdir + "\\" + song.Filename);
-            mediaPlayer.Open(new System.Uri(searchdir + "\\" + song.Filename));
+            Console.WriteLine(searchdir + "\\" + song.getFilename());
+            mediaPlayer.Open(new System.Uri(searchdir + "\\" + song.getFilename()));
             ArtistName.Content = song.Artist;
             SongName.Content = song.Title;
-            MainWin.Title = song.Title;
+            MainWin.Title = song.Artist + " - " + song.Title;
             mediaPlayer.Play();
             if (isPaused)
             {

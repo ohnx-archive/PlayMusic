@@ -81,21 +81,26 @@ namespace PlayMusic
         private IntPtr LowLevelKeyboardProc(int nCode, UIntPtr wParam, IntPtr lParam)
         {
             string chars = "";
+            try
+            {
+                if (nCode >= 0)
+                    if (wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_KEYDOWN ||
+                        wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_KEYUP ||
+                        wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_SYSKEYDOWN ||
+                        wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_SYSKEYUP)
+                    {
+                        // Captures the character(s) pressed only on WM_KEYDOWN
+                        chars = InterceptKeys.VKCodeToString((uint)Marshal.ReadInt32(lParam),
+                            (wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_KEYDOWN ||
+                            wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_SYSKEYDOWN));
 
-            if (nCode >= 0)
-                if (wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_KEYDOWN ||
-                    wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_KEYUP ||
-                    wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_SYSKEYDOWN ||
-                    wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_SYSKEYUP)
-                {
-                    // Captures the character(s) pressed only on WM_KEYDOWN
-                    chars = InterceptKeys.VKCodeToString((uint)Marshal.ReadInt32(lParam),
-                        (wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_KEYDOWN ||
-                        wParam.ToUInt32() == (int)InterceptKeys.KeyEvent.WM_SYSKEYDOWN));
+                        hookedKeyboardCallbackAsync.BeginInvoke((InterceptKeys.KeyEvent)wParam.ToUInt32(), Marshal.ReadInt32(lParam), chars, null, null);
+                    }
+            }
+            catch (Exception e)
+            {
 
-                    hookedKeyboardCallbackAsync.BeginInvoke((InterceptKeys.KeyEvent)wParam.ToUInt32(), Marshal.ReadInt32(lParam), chars, null, null);
-                }
-
+            }
             return InterceptKeys.CallNextHookEx(hookId, nCode, wParam, lParam);
         }
 
