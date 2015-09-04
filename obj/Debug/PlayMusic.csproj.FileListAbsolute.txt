@@ -14,3 +14,5 @@ d:\mason\documents\visual studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic.pdb
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\bin\Debug\policy.2.0.taglib-sharp.dll
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\bin\Debug\taglib-sharp.dll
 d:\mason\documents\visual studio 2013\Projects\PlayMusic\bin\Debug\policy.2.0.taglib-sharp.config
+D:\Mason\Documents\Visual Studio 2013\Projects\PlayMusic\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Mason\Documents\Visual Studio 2013\Projects\PlayMusic\obj\Debug\PlayMusic_MarkupCompile.lref
