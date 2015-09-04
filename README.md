@@ -19,13 +19,13 @@ You can use the media keys to play/pause or skip the current song. (Only Play/pa
 Please note that this functionality does technically mean that there is a keylogger built into this app to detect when a media key is pressed, but solely for that purpose. Nothing is done in this app if the key pressed isn't a media key. Luckily, it's open source, so if you don't trust me (which I sure hope you do!), you can examine the source code.
 
 ### id3 tags
-PlayMusic uses id3 tags to determine the artists, song title and album titles. If you want to edit these tags, simply click on the cell that you want to edit. Afterwards, be sure to save your changes using File > Save. Make sure you aren't listening to the song you edited when you're saving though!
+PlayMusic uses id3 tags to determine the artists, song title genres, and album titles. If you want to edit these values, simply click on the cell that you want to edit. Afterwards, be sure to save your changes using `File > Save`. Make sure you aren't listening to the song you edited when you're saving though!
 
 ### shuffle
-Shuffle is the difference between going to a random song and going to the next song on the list (alphabetical by filename)
+Shuffle is the difference between going to a random song and going to the next song on the list.
 
 ### changing the music scan directory
-If you want to change the music scan directory, you can either put a file named "config.txt" (with the first line being the folder path) in the same folder as PlayMusic, and PlayMusic will automatically use that when starting. alternatively, you can also use the File > Change Music Location menu to select another folder to scan.
+If you want to change the music scan directory, you can either put a file named `config.txt` (with the first line being the folder path, and other lines being anything you want) in the same folder as PlayMusic, and PlayMusic will automatically use that when starting. Alternatively, you can also use the `File > Change Music Location` menu to select another folder to scan.
 
 ## screenshots
 These screenshots are out of date. I will post new ones soon (this means in less than a year).
@@ -38,4 +38,4 @@ Larger mode:
 ![Larger mode](http://i.imgur.com/QirpXuR.png)
 
 ## download
-You can compile the source, or you can download the precompiled binary extractor [here](https://github.com/ohnx/PlayMusic/releases/download/v2.0/PlayMusic-Install.exe). The current (stable) version is v2.0. Other releases can be found on the [releases page](https://github.com/ohnx/PlayMusic/releases).
+You can compile the source, or you can download the zip file of the bin file  [here](https://github.com/ohnx/PlayMusic/releases/download/v2.1/PlayMusic-bin.zip). The current (stable) version is v2.0. Other releases can be found on the [releases page](https://github.com/ohnx/PlayMusic/releases).
