@@ -101,6 +101,7 @@ namespace PlayMusic
         }
         private void genCol()
         {
+            List<Song> old = songs;
             songs = new List<Song>();
             TagLib.File temp;
             foreach (string s in Directory.GetFiles(searchdir, "*.mp3"))
@@ -132,6 +133,7 @@ namespace PlayMusic
                 else
                 {
                     searchdir = prevSearchDir;
+                    songs = old;
                     return;
                 }
             }
